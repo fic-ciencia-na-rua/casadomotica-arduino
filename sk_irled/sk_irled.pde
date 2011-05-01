@@ -10,6 +10,10 @@ Based in work from:
  http://arduino.cc/en/Tutorial/Calibration
  */
 
+#include <utils/ident.c>
+
+int program_id = PROGRAM_IRLED;
+
 // These constants won't change:
 const int sensorPin = A0;    // pin that the sensor is attached to
 const int ledPin = 13;        // pin that the LED is attached to
@@ -77,6 +81,10 @@ bool triggered = false;
 
 void loop() {
   int rawSensorValue;
+
+  // Get readings for ident
+  ident_loop();
+  
   // read the sensor:
   rawSensorValue = analogRead(sensorPin);
 
@@ -98,3 +106,6 @@ void loop() {
   Serial.println(")");
 
 }
+
+/* -- vim: set sw=2 ts=2 et sts=2 filetype=c: -- */
+
