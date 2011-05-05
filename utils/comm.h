@@ -1,5 +1,5 @@
 /*
- * Identificador para Arduino.
+ * Commificador para Arduino.
  *
  * Parte de Arduino
  *
@@ -8,18 +8,20 @@
  *   int program_id = 'a';
  */
 
-#ifndef _IDENT_H_
-#define _IDENT_H_
+#ifndef _COMM_H_
+#define _COMM_H_
 
 #include <WProgram.h>
 #include "constants.h"
 #include "ident.h"
 
-class Ident {
+class Comm {
 public:
-	Ident(int prog_id);
-	~Ident();
+	Comm(int prog_id);
+	~Comm();
 	void on_loop();
+	void send(int, int);
+	void send(int, char*);
 
 private:
 	int prog_id;

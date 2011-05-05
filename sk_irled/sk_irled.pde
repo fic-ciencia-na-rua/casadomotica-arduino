@@ -10,9 +10,9 @@ Based in work from:
  http://arduino.cc/en/Tutorial/Calibration
  */
 #include <constants.h>
-#include <ident.h>
+#include <comm.h>
 
-Ident identifier = Ident(PROGRAM_IRLED);
+Comm comm = Comm(PROGRAM_IRLED);
 
 // These constants won't change:
 const int sensorPin = A0;    // pin that the sensor is attached to
@@ -53,7 +53,6 @@ void setup() {
   // calibrate during the first five seconds 
   while (millis() < 5000) {
     sensorValue = analogRead(sensorPin);
-    Serial.println(sensorValue);
     
     if(millis() > (lastTime + interval)) {
       digitalWrite(6, calibration ? true : false);
@@ -83,7 +82,7 @@ void loop() {
   int rawSensorValue;
 
   // Get readings for ident
-  identifier.on_loop();
+  comm.on_loop();
   
   // read the sensor:
   rawSensorValue = analogRead(sensorPin);
@@ -99,12 +98,6 @@ void loop() {
     triggered = true;
     
   digitalWrite(ledPin, triggered);
-  
-  Serial.print(rawSensorValue);
-  Serial.print(" (");
-  Serial.print(sensorValue);
-  Serial.println(")");
-
 }
 
 /* -- vim: set sw=2 ts=2 et sts=2 filetype=c: -- */

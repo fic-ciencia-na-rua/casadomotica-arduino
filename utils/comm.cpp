@@ -1,5 +1,5 @@
 /*
- * Identificador para Arduino.
+ * Commificador para Arduino.
  *
  * Parte de Arduino
  *
@@ -10,17 +10,17 @@
 
 #include <WProgram.h>
 #include "constants.h"
-#include "ident.h"
+#include "comm.h"
 
 extern int program_id;
 
-Ident::Ident(int prog_id)
+Comm::Comm(int prog_id)
 {
   this->prog_id = prog_id;
 }
-Ident::~Ident() {}
+Comm::~Comm() {}
 
-void Ident::on_loop()
+void Comm::on_loop()
 {
   int peek;
   if(Serial.available())
@@ -32,6 +32,28 @@ void Ident::on_loop()
       Serial.write(this->prog_id); /* enviamos un byte: program_id */
     }
   }
+}
+
+void Comm::send(int key, int value)
+{
+  const char STX = 0x02;
+  const char ETX = 0x03;
+  
+  Serial.write(STX);
+  Serial.write(key);
+  Serial.write(value);
+  Serial.write(ETX);
+}
+
+void Comm::send(int key, char *value)
+{
+  const char STX = 0x02;
+  const char ETX = 0x03;
+
+  Serial.write(STX);
+  Serial.write(key);
+  Serial.write(value);
+  Serial.write(ETX);
 }
 
 /* -- vim: set sw=2 ts=2 et sts=2: -- */
