@@ -9,8 +9,7 @@ Based in work from:
  
  http://arduino.cc/en/Tutorial/Calibration
  */
-
-#include <utils/ident.c>
+#include <constants.h>
 
 int program_id = PROGRAM_IRLED;
 

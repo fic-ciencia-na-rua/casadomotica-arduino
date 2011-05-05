@@ -12,7 +12,7 @@
 
 extern int program_id;
 
-static inline void ident_loop()
+void ident_loop()
 {
   int peek;
   if(Serial.avaliable())
