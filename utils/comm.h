@@ -13,7 +13,6 @@
 
 #include <WProgram.h>
 #include "constants.h"
-#include "ident.h"
 
 class Comm {
 public:
