@@ -10,8 +10,9 @@ Based in work from:
  http://arduino.cc/en/Tutorial/Calibration
  */
 #include <constants.h>
+#include <ident.h>
 
-int program_id = PROGRAM_IRLED;
+Ident identifier = Ident(PROGRAM_IRLED);
 
 // These constants won't change:
 const int sensorPin = A0;    // pin that the sensor is attached to
@@ -82,7 +83,7 @@ void loop() {
   int rawSensorValue;
 
   // Get readings for ident
-  ident_loop();
+  identifier.on_loop();
   
   // read the sensor:
   rawSensorValue = analogRead(sensorPin);
